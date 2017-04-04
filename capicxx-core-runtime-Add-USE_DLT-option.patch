@@ -1,16 +1,15 @@
-From d81de02c5044e99bca26dba73654457d6084618d Mon Sep 17 00:00:00 2001
+From a786cecc0104792d26d82d97a346a3175d452d71 Mon Sep 17 00:00:00 2001
 From: Oleg Kolosov <bazurbat@gmail.com>
-Date: Fri, 30 Mar 2017 21:16:24 +0200
-Subject: [PATCH] Add USE_DLT option to CMakeLists
+Date: Tue, 4 Apr 2017 11:54:37 +0200
+Subject: [PATCH] Add USE_DLT option
 
-This patch allows to disable the usage of DLT even if it is found during
-configure.
+This allows to disable DLT even if it is found.
 ---
  CMakeLists.txt | 5 +++++
  1 file changed, 5 insertions(+)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 6c78c9d..331e809 100644
+index b62a926..692f4c7 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -68,6 +68,9 @@ message(STATUS "USE_FILE is set to value: ${USE_FILE}")
@@ -23,12 +22,11 @@ index 6c78c9d..331e809 100644
  # Make relative paths absolute (needed later on)
  foreach(p LIB INCLUDE CMAKE)
    set(var INSTALL_${p}_DIR)
-@@ -103,11 +106,13 @@ ENDIF(MSVC)
- 
+@@ -104,10 +107,12 @@ ENDIF(MSVC)
  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCOMMONAPI_LOGLEVEL=COMMONAPI_LOGLEVEL_${MAX_LOG_LEVEL}")
   
-+IF(USE_DLT)
  FIND_PACKAGE(PkgConfig)
++IF(USE_DLT)
  pkg_check_modules(DLT "automotive-dlt >= 2.11")
  IF(DLT_FOUND) 
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSE_DLT")
