@@ -1,0 +1,20 @@
+diff --git a/NodeStateAccess/Makefile.am b/NodeStateAccess/Makefile.am
+index ea33d77..8e93b9b 100644
+--- a/NodeStateAccess/Makefile.am
++++ b/NodeStateAccess/Makefile.am
+@@ -50,12 +50,15 @@ CLEANFILES    =  generated/NodeStateConsumer.c          \
+ 
+ # Targets to create generated sources during the build
+ generated/NodeStateConsumer.c generated/NodeStateConsumer.h: model/org.genivi.NodeStateManager.Consumer.xml
++	mkdir -p doc generated
+ 	gdbus-codegen --interface-prefix=org.genivi.NodeStateManager. --c-namespace=NodeState --generate-c-code=generated/NodeStateConsumer --generate-docbook=doc/NodeStateConsumer model/org.genivi.NodeStateManager.Consumer.xml
+ 
+ generated/NodeStateLifecycleControl.c generated/NodeStateLifecycleControl.h: model/org.genivi.NodeStateManager.LifecycleControl.xml
++	mkdir -p doc generated
+ 	gdbus-codegen --interface-prefix=org.genivi.NodeStateManager. --c-namespace=NodeState --generate-c-code=generated/NodeStateLifecycleControl --generate-docbook=doc/LifecycleControl  model/org.genivi.NodeStateManager.LifecycleControl.xml
+ 
+ generated/NodeStateLifecycleConsumer.c generated/NodeStateLifecycleConsumer.h: model/org.genivi.NodeStateManager.LifecycleConsumer.xml
++	mkdir -p doc generated
+ 	gdbus-codegen --interface-prefix=org.genivi.NodeStateManager. --c-namespace=NodeState --generate-c-code=generated/NodeStateLifecycleConsumer --generate-docbook=doc/LifecycleConsumer model/org.genivi.NodeStateManager.LifecycleConsumer.xml
+ 
+ 
